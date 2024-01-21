@@ -1,5 +1,10 @@
 #!/usr/bin/zsh
 
+# Check whether the script runs without arguments
+if [[ $# -eq 0 ]]; then
+    echo "Error. Command ran without arguments."
+    exit 1
+fi
 # Define an associative array to store keyword arguments
 declare -A args
 
@@ -20,7 +25,7 @@ while [[ $# -gt 0 ]]; do
             ;;
         *)
             echo "Unknown option: $1"
-            exit 1
+            exit 2
             ;;
     esac
 done
@@ -39,6 +44,6 @@ if [ "$ACTUAL_CHECKSUM" = "$EXPECTED_CHECKSUM" ]; then
 
 else
   echo "Warning. Incorrect checksum."
-  exit 2
+  exit 3
 
 fi
